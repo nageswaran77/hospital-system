@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Appointment - MediCare{% endblock %}
+
+{% block content %}
+<div class="bg-primary text-white py-5 text-center">
+    <div class="container">
+        <h1 class="fw-bold display-4">Book an Appointment</h1>
+        <p class="lead">Schedule your visit with our expert doctors</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow border-0 rounded-3">
+                <div class="card-body p-5">
+                    <form method="POST" action="{% url 'appointment' %}">
+                        {% csrf_token %}
+                        
+                        <h4 class="text-primary fw-bold mb-4 border-bottom pb-2">Patient Information</h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" name="patient_name" class="form-control" required {% if user.is_authenticated %}value="{{ user.first_name }} {{ user.last_name }}"{% endif %}>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Age</label>
+                                <input type="number" name="age" class="form-control" required min="0" max="150">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Gender</label>
+                                <select name="gender" class="form-select" required>
+                                    <option value="" disabled selected>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" name="phone_number" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" name="email" class="form-control" required {% if user.is_authenticated %}value="{{ user.email }}"{% endif %}>
+                            </div>
+                        </div>
+
+                        <h4 class="text-primary fw-bold mb-4 border-bottom pb-2 mt-5">Appointment Details</h4>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Department</label>
+                                <select name="department" class="form-select" required id="departmentSelect">
+                                    <option value="" disabled selected>Select Department</option>
+                                    {% for dept in departments %}
+                                        <option value="{{ dept.id }}">{{ dept.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Doctor</label>
+                                <select name="doctor" class="form-select" required id="doctorSelect">
+                                    <option value="" disabled selected>Select Doctor</option>
+                                    {% for doctor in doctors %}
+                                        <option value="{{ doctor.id }}" data-dept="{{ doctor.department.id }}" {% if request.GET.doctor == doctor.id|stringformat:"s" %}selected{% endif %}>
+                                            Dr. {{ doctor.name }} ({{ doctor.department.name }})
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Appointment Date</label>
+                                <input type="date" name="appointment_date" id="appointment_date" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Appointment Time</label>
+                                <input type="time" name="appointment_time" class="form-control" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Symptoms / Message (Optional)</label>
+                                <textarea name="symptoms" class="form-control" rows="4"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col-md-6">
+                                <button type="reset" class="btn btn-light btn-lg w-100 rounded-pill">Reset Form</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill">Submit Appointment</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Simple filter for doctors based on department
+    document.addEventListener('DOMContentLoaded', function() {
+        const deptSelect = document.getElementById('departmentSelect');
+        const docSelect = document.getElementById('doctorSelect');
+        const docOptions = Array.from(docSelect.options);
+        
+        if (deptSelect && docSelect) {
+            deptSelect.addEventListener('change', function() {
+                const selectedDept = this.value;
+                
+                // Clear existing options except first
+                docSelect.innerHTML = '';
+                docSelect.appendChild(docOptions[0]);
+                
+                // Add relevant options
+                docOptions.forEach(opt => {
+                    if (opt.value && opt.dataset.dept === selectedDept) {
+                        docSelect.appendChild(opt.cloneNode(true));
+                    }
+                });
+            });
+            
+            // If doctor was pre-selected from GET params, update department
+            const selectedDocOption = docSelect.querySelector('option[selected]');
+            if (selectedDocOption && selectedDocOption.value) {
+                deptSelect.value = selectedDocOption.dataset.dept;
+            }
+        }
+    });
+</script>
+{% endblock %}

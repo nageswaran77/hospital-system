@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Doctors - MediCare{% endblock %}
+
+{% block content %}
+<div class="bg-primary text-white py-5 text-center">
+    <div class="container">
+        <h1 class="fw-bold display-4">Our Doctors</h1>
+        <p class="lead">Meet Our Team of Medical Experts</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <!-- Filter and Search -->
+    <div class="row mb-5 justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <form method="GET" action="{% url 'doctors' %}" class="row g-3">
+                        <div class="col-md-5">
+                            <select name="department" class="form-select">
+                                <option value="">All Departments</option>
+                                {% for dept in departments %}
+                                <option value="{{ dept.id }}" {% if request.GET.department == dept.id|stringformat:"s" %}selected{% endif %}>{{ dept.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <input type="text" name="search" class="form-control" placeholder="Search doctor by name..." value="{{ request.GET.search }}">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Doctors List -->
+    <div class="row g-4">
+        {% for doctor in doctors %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card hover-card h-100">
+                {% if doctor.image %}
+                    <img src="{{ doctor.image.url }}" class="card-img-top" alt="{{ doctor.name }}" style="height: 300px; object-fit: cover;">
+                {% else %}
+                    <img src="https://ui-avatars.com/api/?name={{ doctor.name }}&background=0d6efd&color=fff&size=300" class="card-img-top" alt="{{ doctor.name }}">
+                {% endif %}
+                <div class="card-body text-center">
+                    <h4 class="card-title fw-bold mb-1">{{ doctor.name }}</h4>
+                    <p class="text-primary fw-bold mb-2">{{ doctor.department.name }}</p>
+                    <p class="text-muted small mb-3">{{ doctor.qualification }} | {{ doctor.experience }} Years Exp.</p>
+                    
+                    <ul class="list-unstyled text-start small mb-4 bg-light p-3 rounded">
+                        <li><i class="far fa-calendar-alt text-primary me-2"></i> Days: {{ doctor.available_days }}</li>
+                        <li class="mt-2"><i class="fas fa-dollar-sign text-primary me-2"></i> Fee: ${{ doctor.consultation_fee }}</li>
+                    </ul>
+                    
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'doctor_detail' doctor.id %}" class="btn btn-primary w-50 rounded-pill">View Profile</a>
+                        <a href="{% url 'appointment' %}?doctor={{ doctor.id }}" class="btn btn-outline-primary w-50 rounded-pill">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <h3 class="text-muted">No doctors found matching your criteria.</h3>
+            <a href="{% url 'doctors' %}" class="btn btn-primary mt-3">Clear Filters</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

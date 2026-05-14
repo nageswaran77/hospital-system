@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us - MediCare{% endblock %}
+
+{% block content %}
+<div class="bg-primary text-white py-5 text-center">
+    <div class="container">
+        <h1 class="fw-bold display-4">Contact Us</h1>
+        <p class="lead">Get in touch with us for any inquiries or assistance</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-5">
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm h-100 mb-4 p-4">
+                <div class="d-flex align-items-center mb-4">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                        <i class="fas fa-map-marker-alt fa-lg"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-1">Our Location</h5>
+                        <p class="text-muted mb-0">123 Health Ave, Medical City</p>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center mb-4">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                        <i class="fas fa-phone-alt fa-lg"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-1">Phone Number</h5>
+                        <p class="text-muted mb-0">+1 (234) 567-8900</p>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center mb-4">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                        <i class="fas fa-envelope fa-lg"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-1">Email Address</h5>
+                        <p class="text-muted mb-0">info@medicare.com</p>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center">
+                    <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                        <i class="fas fa-ambulance fa-lg"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold text-danger mb-1">Emergency</h5>
+                        <p class="text-muted mb-0">1-800-123-4567 (24/7)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm p-4">
+                <h3 class="fw-bold mb-4">Send Us a Message</h3>
+                <form method="POST" action="{% url 'contact' %}">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="tel" name="phone" class="form-control" placeholder="Phone Number">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                        </div>
+                        <div class="col-12">
+                            <textarea name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary px-5 rounded-pill mt-3">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

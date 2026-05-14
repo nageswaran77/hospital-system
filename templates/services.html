@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Services - MediCare{% endblock %}
+
+{% block content %}
+<div class="bg-primary text-white py-5 text-center">
+    <div class="container">
+        <h1 class="fw-bold display-4">Our Services</h1>
+        <p class="lead">Comprehensive Medical Care For You and Your Family</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4">
+        {% for service in services %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card hover-card h-100 p-4 border-0 shadow-sm">
+                <div class="text-primary mb-3">
+                    <i class="fas {{ service.icon }} fa-3x"></i>
+                </div>
+                <h4 class="card-title fw-bold">{{ service.name }}</h4>
+                <p class="card-text text-muted">{{ service.description }}</p>
+                <div class="mt-auto pt-3">
+                    <a href="{% url 'appointment' %}" class="btn btn-outline-primary rounded-pill btn-sm">Book Service <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <h3 class="text-muted">Services are currently being updated.</h3>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

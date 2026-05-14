@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Emergency Banner -->
+<div class="emergency-banner text-center">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-md-start">
+                <i class="fas fa-ambulance me-2"></i> 24/7 Emergency Ambulance Service
+            </div>
+            <div class="col-md-6 text-md-end">
+                <i class="fas fa-phone-alt me-2"></i> Emergency: <strong>1-800-123-4567</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<section class="hero-section text-center">
+    <div class="container fade-in">
+        <h1 class="display-3 fw-bold mb-4">Your Health is Our Priority</h1>
+        <p class="lead mb-5 max-w-700 mx-auto">Experience world-class healthcare with our state-of-the-art facilities and experienced medical professionals dedicated to your well-being.</p>
+        <a href="{% url 'appointment' %}" class="btn btn-light btn-lg text-primary fw-bold px-5 py-3 rounded-pill">
+            <i class="fas fa-calendar-check me-2"></i> Book an Appointment
+        </a>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-5 bg-white">
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h6 class="text-primary fw-bold text-uppercase">Our Services</h6>
+            <h2 class="fw-bold">High-Quality Medical Services</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4 col-sm-6">
+                <div class="card hover-card h-100 text-center p-4">
+                    <i class="fas fa-heartbeat service-icon"></i>
+                    <h4 class="card-title fw-bold">Cardiology</h4>
+                    <p class="card-text text-muted">Comprehensive heart care, from diagnostics to advanced surgical procedures.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="card hover-card h-100 text-center p-4">
+                    <i class="fas fa-brain service-icon"></i>
+                    <h4 class="card-title fw-bold">Neurology</h4>
+                    <p class="card-text text-muted">Expert diagnosis and treatment for all neurological conditions.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="card hover-card h-100 text-center p-4">
+                    <i class="fas fa-bone service-icon"></i>
+                    <h4 class="card-title fw-bold">Orthopedics</h4>
+                    <p class="card-text text-muted">Advanced care for bones, joints, and muscular system issues.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="card hover-card h-100 text-center p-4">
+                    <i class="fas fa-baby service-icon"></i>
+                    <h4 class="card-title fw-bold">Pediatrics</h4>
+                    <p class="card-text text-muted">Dedicated care for infants, children, and adolescents.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="card hover-card h-100 text-center p-4">
+                    <i class="fas fa-tooth service-icon"></i>
+                    <h4 class="card-title fw-bold">Dental Care</h4>
+                    <p class="card-text text-muted">Complete dental services including cosmetic and restorative dentistry.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="card hover-card h-100 text-center p-4">
+                    <i class="fas fa-ambulance service-icon"></i>
+                    <h4 class="card-title fw-bold">Emergency Care</h4>
+                    <p class="card-text text-muted">24/7 immediate medical attention for critical and life-threatening conditions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Preview -->
+<section class="py-5 bg-light">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=1000" class="img-fluid rounded shadow-lg" alt="Hospital Building">
+            </div>
+            <div class="col-lg-6 ps-lg-5">
+                <h6 class="text-primary fw-bold text-uppercase">About Us</h6>
+                <h2 class="fw-bold mb-4">Over 25 Years of Experience in Medical Services</h2>
+                <p class="text-muted mb-4">MediCare has been at the forefront of healthcare excellence since its establishment. We believe in providing patient-centric care that is both compassionate and utilizing the latest medical technologies.</p>
+                
+                <div class="row text-center mt-5">
+                    <div class="col-4">
+                        <h2 class="text-primary fw-bold mb-0">25+</h2>
+                        <p class="text-muted small">Years Experience</p>
+                    </div>
+                    <div class="col-4">
+                        <h2 class="text-primary fw-bold mb-0">150+</h2>
+                        <p class="text-muted small">Expert Doctors</p>
+                    </div>
+                    <div class="col-4">
+                        <h2 class="text-primary fw-bold mb-0">50k+</h2>
+                        <p class="text-muted small">Happy Patients</p>
+                    </div>
+                </div>
+                <a href="{% url 'about' %}" class="btn btn-outline-primary mt-4">Read More About Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="py-5 text-white" style="background-color: var(--primary-color);">
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Why Choose MediCare</h2>
+        </div>
+        <div class="row g-4 text-center">
+            <div class="col-md-4">
+                <i class="fas fa-user-md fa-3x mb-3"></i>
+                <h4>Experienced Doctors</h4>
+                <p class="small text-light">Our team consists of highly qualified professionals.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-microscope fa-3x mb-3"></i>
+                <h4>Modern Equipment</h4>
+                <p class="small text-light">We use the latest medical technology for accurate diagnosis.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-clock fa-3x mb-3"></i>
+                <h4>24/7 Support</h4>
+                <p class="small text-light">Our medical staff is available around the clock.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

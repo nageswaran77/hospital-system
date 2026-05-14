@@ -36,4 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const minDate = year + '-' + month + '-' + day;
         dateInput.setAttribute('min', minDate);
     }
+
+    // Color toggle - click to change white to blue
+    const colorToggleElements = document.querySelectorAll('.color-toggle');
+    colorToggleElements.forEach(function(element) {
+        element.addEventListener('click', function(e) {
+            e.preventDefault();
+            this.classList.toggle('active');
+        });
+    });
 });

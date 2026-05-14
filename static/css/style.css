@@ -113,3 +113,20 @@ body {
     background: var(--primary-color);
     transform: translateY(-3px);
 }
+
+/* Color Toggle */
+.color-toggle {
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.color-toggle:hover {
+    opacity: 0.8;
+}
+
+.color-toggle.active {
+    background-color: var(--primary-color);
+    color: white;
+}

@@ -12,14 +12,31 @@ body {
     background-color: var(--secondary-color);
 }
 
+::selection {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+::-moz-selection {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
 /* Animations */
 .fade-in {
     animation: fadeIn 1s ease-in;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Cards Hover Effects */
@@ -31,12 +48,12 @@ body {
 
 .hover-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(rgba(13, 110, 253, 0.8), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=2000') center/cover;
+    background: linear-gradient(rgba(13, 110, 253, 0.8), rgba(0, 0, 0, 0.6)), url('../images/home.avif') center/cover;
     color: white;
     padding: 150px 0;
     position: relative;
@@ -76,13 +93,15 @@ body {
 }
 
 /* Forms */
-.form-control, .form-select {
+.form-control,
+.form-select {
     border-radius: 10px;
     padding: 12px;
     border: 1px solid #ced4da;
 }
 
-.form-control:focus, .form-select:focus {
+.form-control:focus,
+.form-select:focus {
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
     border-color: var(--primary-color);
 }
@@ -93,7 +112,7 @@ body {
 }
 
 .footer-links a:hover {
-    color: var(--primary-color) !important;
+    color: var(--primary-color);
     padding-left: 5px;
     transition: all 0.3s ease;
 }
@@ -105,7 +124,7 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
 }
 
